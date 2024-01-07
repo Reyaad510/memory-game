@@ -10,7 +10,7 @@ const COLORS = [
   "blue",
   "green",
   "orange",
-  "purple"
+  "purple",
 ];
 
 // here is a helper function to shuffle an array
@@ -28,8 +28,11 @@ function shuffle(array) {
     counter--;
 
     // And swap the last element with it
+    // Storing last arr element in a temp variable
     let temp = array[counter];
+    // Setting last array[counter(9 -> 8 -> 7 -> 6)] to random color from array[index]
     array[counter] = array[index];
+    // Setting the random array[index] to the color of what array[counter] was that was stored in variable temp before it had changed
     array[index] = temp;
   }
 
