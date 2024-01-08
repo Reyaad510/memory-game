@@ -38,15 +38,18 @@ h1 {
   margin-bottom: 0.8rem;
   outline: none;
   text-align: center;
+  margin-bottom: -1px;
+
 
 }
 
-h2 {
+h2, h3 {
   display: flex;
-  width: 100%;
+  width: 97%;
  letter-spacing: 4px;
- opacity: 0.7;
- font-size: 20px;
+ opacity: 0.8;
+ font-size: 17px;
+ margin-bottom: -1px;
 }
 
 h1:hover {
@@ -144,6 +147,10 @@ button:hover {
  
   h1 {
     font-size: 50px;
+  }
+
+  h2, h3 {
+   font-size: 15px;
   }
 
   #game div {

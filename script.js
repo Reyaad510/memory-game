@@ -1,13 +1,17 @@
 const gameContainer = document.getElementById("game");
 const startGameBtn = document.querySelector("#start-game");
 const score = document.querySelector("#score");
+const highScoreEle = document.querySelector("#high-score");
 const restart = document.querySelector("#restart");
 const h2 = document.querySelector("h2");
+const h3 = document.querySelector("h3");
 let clicked = 0;
 matchArr = [];
 targetArr = [];
 let start = "false";
 let guessScore = 0;
+let highScore = JSON.parse(localStorage.getItem("score")) || 0;
+let match = 0;
 
 const COLORS = [
   "red",
@@ -81,8 +85,11 @@ startGameBtn.addEventListener("click", function (e) {
   gameContainer.classList.remove("clicked");
   gameContainer.classList.remove("blur");
   h2.classList.remove("blur");
+  h3.classList.remove("blur");
   e.target.style.display = "none";
   restart.style.display = "flex";
+  highScoreEle.innerText = JSON.parse(localStorage.getItem("score"));
+  score.innerText = guessScore;
 });
 
 // Restart game
@@ -96,13 +103,16 @@ restart.addEventListener("click", function (e) {
   e.target.style.display = "none";
   startGameBtn.style.display = "flex";
   guessScore = 0;
+  match = 0;
   score.innerText = guessScore;
+  highScoreEle.innerText = JSON.parse(localStorage.getItem("score"));
 
   shuffle(COLORS);
   createDivsForColors(shuffledColors);
   gameContainer.classList.add("clicked");
   gameContainer.classList.add("blur");
   h2.classList.add("blur");
+  h3.classList.add("blur");
 });
 
 function handleCardClick(event) {
@@ -112,7 +122,6 @@ function handleCardClick(event) {
     event.target.classList.add("clicked");
     matchArr.push(event.target.className);
     targetArr.push(event.target);
-
     clicked++;
   }
   if (clicked == 2) {
@@ -128,8 +137,24 @@ function handleCardClick(event) {
       }, 500);
       guessScore++;
       score.innerText = guessScore;
+      match++;
 
-      console.log("Match!");
+      if (match === COLORS.length / 2) {
+        if (!localStorage.getItem("score")) {
+          localStorage.setItem("score", JSON.stringify(guessScore));
+          highScoreEle.innerText = guessScore;
+        } else {
+          let getScore = JSON.parse(localStorage.getItem("score"));
+          console.log(getScore);
+          if (guessScore < getScore) {
+            localStorage.setItem("score", JSON.stringify(guessScore));
+            highScoreEle.innerText = guessScore;
+          } else {
+            console.log("Your score isn't better!");
+          }
+        }
+        console.log("game finished!");
+      }
     } else {
       setTimeout(function () {
         targetArr[0].style.backgroundColor = "antiquewhite";
