@@ -1,9 +1,11 @@
 const gameContainer = document.getElementById("game");
 const startGameBtn = document.querySelector("#start-game");
+const score = document.querySelector("#score");
 let clicked = 0;
 matchArr = [];
 targetArr = [];
 let start = "false";
+let guessScore = 0;
 
 const COLORS = [
   "red",
@@ -100,6 +102,8 @@ function handleCardClick(event) {
         matchArr = [];
         gameContainer.classList.remove("clicked");
       }, 500);
+      guessScore++;
+      score.innerText = guessScore;
 
       console.log("Match!");
     } else {
@@ -113,6 +117,8 @@ function handleCardClick(event) {
         matchArr = [];
         gameContainer.classList.remove("clicked");
       }, 1000);
+      guessScore++;
+      score.innerText = guessScore;
 
       console.log("No match. Try again!");
     }
