@@ -1,5 +1,7 @@
 const gameContainer = document.getElementById("game");
 let clicked = 0;
+matchArr = [];
+targetArr = [];
 
 const COLORS = [
   "red",
@@ -66,7 +68,33 @@ function handleCardClick(event) {
   // you can use event.target to see which element was clicked
   if (clicked < 2) {
     event.target.style.backgroundColor = event.target.className;
+    event.target.classList.add("clicked");
+    matchArr.push(event.target.className);
+    targetArr.push(event.target);
+
     clicked++;
+  }
+  if (clicked == 2) {
+    let colorOne = matchArr[0];
+    let colorTwo = matchArr[1];
+    if (colorOne === colorTwo) {
+      clicked = 0;
+      targetArr = [];
+      matchArr = [];
+      console.log("Match!");
+    } else {
+      setTimeout(function () {
+        targetArr[0].style.backgroundColor = "white";
+        event.target.style.backgroundColor = "white";
+        event.target.classList.remove("clicked");
+        targetArr[0].classList.remove("clicked");
+        clicked = 0;
+        targetArr = [];
+        matchArr = [];
+      }, 1000);
+
+      console.log("No match. Try again!");
+    }
   }
 }
 
