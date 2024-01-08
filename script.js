@@ -89,8 +89,8 @@ function handleCardClick(event) {
       console.log("Match!");
     } else {
       setTimeout(function () {
-        targetArr[0].style.backgroundColor = "white";
-        event.target.style.backgroundColor = "white";
+        targetArr[0].style.backgroundColor = "antiquewhite";
+        event.target.style.backgroundColor = "antiquewhite";
         event.target.classList.remove("clicked");
         targetArr[0].classList.remove("clicked");
         clicked = 0;
