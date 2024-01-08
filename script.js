@@ -1,6 +1,8 @@
 const gameContainer = document.getElementById("game");
 const startGameBtn = document.querySelector("#start-game");
 const score = document.querySelector("#score");
+const restart = document.querySelector("#restart");
+const h2 = document.querySelector("h2");
 let clicked = 0;
 matchArr = [];
 targetArr = [];
@@ -78,7 +80,29 @@ startGameBtn.addEventListener("click", function (e) {
   start = "true";
   gameContainer.classList.remove("clicked");
   gameContainer.classList.remove("blur");
+  h2.classList.remove("blur");
   e.target.style.display = "none";
+  restart.style.display = "flex";
+});
+
+// Restart game
+restart.addEventListener("click", function (e) {
+  start = "false";
+
+  while (gameContainer.firstChild) {
+    gameContainer.removeChild(gameContainer.firstChild);
+  }
+
+  e.target.style.display = "none";
+  startGameBtn.style.display = "flex";
+  guessScore = 0;
+  score.innerText = guessScore;
+
+  shuffle(COLORS);
+  createDivsForColors(shuffledColors);
+  gameContainer.classList.add("clicked");
+  gameContainer.classList.add("blur");
+  h2.classList.add("blur");
 });
 
 function handleCardClick(event) {

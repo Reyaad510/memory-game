@@ -104,6 +104,19 @@ button:hover {
 }
 
 
+#restart {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #C33133;
+}
+
+#start-game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .blur {
   filter: blur(5px);
 }
