@@ -1,7 +1,9 @@
 const gameContainer = document.getElementById("game");
+const startGameBtn = document.querySelector("#start-game");
 let clicked = 0;
 matchArr = [];
 targetArr = [];
+let start = "false";
 
 const COLORS = [
   "red",
@@ -65,7 +67,18 @@ function createDivsForColors(colorArray) {
   }
 }
 
-// TODO: Implement this function!
+// Start game
+if (start === "false") {
+  gameContainer.classList.add("clicked");
+}
+
+startGameBtn.addEventListener("click", function (e) {
+  start = "true";
+  gameContainer.classList.remove("clicked");
+  gameContainer.classList.remove("blur");
+  e.target.style.display = "none";
+});
+
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
   if (clicked < 2) {
@@ -107,4 +120,5 @@ function handleCardClick(event) {
 }
 
 // when the DOM loads
+
 createDivsForColors(shuffledColors);
