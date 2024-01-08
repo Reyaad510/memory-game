@@ -75,12 +75,17 @@ function handleCardClick(event) {
     clicked++;
   }
   if (clicked == 2) {
+    gameContainer.classList.add("clicked");
     let colorOne = matchArr[0];
     let colorTwo = matchArr[1];
     if (colorOne === colorTwo) {
-      clicked = 0;
-      targetArr = [];
-      matchArr = [];
+      setTimeout(function () {
+        clicked = 0;
+        targetArr = [];
+        matchArr = [];
+        gameContainer.classList.remove("clicked");
+      }, 500);
+
       console.log("Match!");
     } else {
       setTimeout(function () {
@@ -91,6 +96,7 @@ function handleCardClick(event) {
         clicked = 0;
         targetArr = [];
         matchArr = [];
+        gameContainer.classList.remove("clicked");
       }, 1000);
 
       console.log("No match. Try again!");
